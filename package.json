@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:ui": "rm -rf dist && cd ../notesFrontend && npm run build && cp -r dist ../notesBackend",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "deploy:render": "npm run build:ui && git add . && git git commit -m uibuild && git push",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
